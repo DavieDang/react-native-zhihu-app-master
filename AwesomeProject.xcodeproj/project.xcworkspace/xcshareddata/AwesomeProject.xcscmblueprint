@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "A9E3EFDAFDAB10AAF123DAE154C7CFE84342FEAE",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "A9E3EFDAFDAB10AAF123DAE154C7CFE84342FEAE" : 9223372036854775807,
+    "D1CAC3560110F78AE435EECB6E7C718B17BD1929" : 0,
+    "5E55C16697EF7C1EE73888F76A25B42A68D43437" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "45FAF42C-11E4-41C2-9F96-1CFDA12E63BF",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "A9E3EFDAFDAB10AAF123DAE154C7CFE84342FEAE" : "react-native-zhihu-app-master\/",
+    "D1CAC3560110F78AE435EECB6E7C718B17BD1929" : "AwesomeProject",
+    "5E55C16697EF7C1EE73888F76A25B42A68D43437" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "AwesomeProject",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "AwesomeProject.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:Mogujie-F2E\/mogu-lotus-proxy.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5E55C16697EF7C1EE73888F76A25B42A68D43437"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/DavieDang\/react-native-zhihu-app-master.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A9E3EFDAFDAB10AAF123DAE154C7CFE84342FEAE"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:LeezQ\/react-native-zhihu-app.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D1CAC3560110F78AE435EECB6E7C718B17BD1929"
+    }
+  ]
+}
