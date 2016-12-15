@@ -24,6 +24,7 @@
 		848063D01E0230F200D39205 /* testViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 848063CF1E0230F200D39205 /* testViewController.m */; };
 		848063DB1E02354300D39205 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 848063DA1E02354300D39205 /* main.jsbundle */; };
 		848063DD1E023D6D00D39205 /* main2.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 848063DC1E023D6D00D39205 /* main2.jsbundle */; };
+		848063DF1E02562800D39205 /* main3.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 848063DE1E02562800D39205 /* main3.jsbundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +115,7 @@
 		848063CF1E0230F200D39205 /* testViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testViewController.m; sourceTree = "<group>"; };
 		848063DA1E02354300D39205 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		848063DC1E023D6D00D39205 /* main2.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main2.jsbundle; sourceTree = "<group>"; };
+		848063DE1E02562800D39205 /* main3.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main3.jsbundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +198,7 @@
 		13B07FAE1A68108700A75B9A /* AwesomeProject */ = {
 			isa = PBXGroup;
 			children = (
+				848063DE1E02562800D39205 /* main3.jsbundle */,
 				848063DA1E02354300D39205 /* main.jsbundle */,
 				848063DC1E023D6D00D39205 /* main2.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -422,6 +425,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				848063DB1E02354300D39205 /* main.jsbundle in Resources */,
+				848063DF1E02562800D39205 /* main3.jsbundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				848063DD1E023D6D00D39205 /* main2.jsbundle in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
