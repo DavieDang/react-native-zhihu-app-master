@@ -9,13 +9,14 @@
 
 #import "AppDelegate.h"
 
-#import "RCTRootView.h"
+
+#import "testViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  NSURL *jsCodeLocation;
+ // NSURL *jsCodeLocation;
 
   // Loading JavaScript code - uncomment the one you want.
 
@@ -28,7 +29,7 @@
   // iOS device are on the same Wi-Fi network.
   //jsCodeLocation = [NSURL URLWithString:@"http://192.168.0.101:8081/index.ios.bundle"];
     
-  jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle"];
+//  jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle"];
   // OPTION 2
   // Load from pre-bundled file on disk. To re-generate the static bundle, run
   //
@@ -36,16 +37,27 @@
   //
   // and uncomment the next following line
   // jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
-
-  RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
-                                                      moduleName:@"AwesomeProject33"
-                                                   launchOptions:launchOptions];
-
+    
+    
+   
+    
+    
+    
+//
+//  RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
+//                                                      moduleName:@"AwesomeProject33"
+//                                                   launchOptions:launchOptions];
+    //  UIViewController *rootViewController = [[UIViewController alloc] init];
+    //  rootViewController.view = rootView;
+    //  self.window.rootViewController = rootViewController;
+    
+    
+    //自定义启动控制器
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-  UIViewController *rootViewController = [[UIViewController alloc] init];
-  rootViewController.view = rootView;
-  self.window.rootViewController = rootViewController;
-  [self.window makeKeyAndVisible];
+     testViewController *testvc = [testViewController new];
+    UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:testvc];
+    self.window.rootViewController = navc;
+    [self.window makeKeyAndVisible];
   return YES;
 }
 

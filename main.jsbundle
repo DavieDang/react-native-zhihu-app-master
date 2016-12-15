@@ -949,22 +949,22 @@ var $__0=
   
   
   
-  React,AppRegistry=$__0.AppRegistry,Image=$__0.Image,ListView=$__0.ListView,StyleSheet=$__0.StyleSheet,Text=$__0.Text,View=$__0.View,NavigatorIOS=$__0.NavigatorIOS;
+    React,AppRegistry=$__0.AppRegistry,Image=$__0.Image,ListView=$__0.ListView,StyleSheet=$__0.StyleSheet,Text=$__0.Text,View=$__0.View,NavigatorIOS=$__0.NavigatorIOS;
 
 var PostsView = require('AwesomeProject/App/Views/Posts/index');
 
-var AwesomeProject = React.createClass({displayName: "AwesomeProject",
-    render: function() {
-        return (
-          React.createElement(NavigatorIOS, {
-            style: styles.container, 
-            tintColor: "#FF6600", 
-            initialRoute: {
-              title: '知乎专栏',
-              component: PostsView,
-            }})
-        );
-      }
+var AwesomeProject33 = React.createClass({displayName: "AwesomeProject33",
+  render: function () {
+    return (
+      React.createElement(NavigatorIOS, {
+        style: styles.container, 
+        tintColor: "#FF6600", 
+        initialRoute: {
+          title: '知乎专栏',
+          component: PostsView,
+        }})
+    );
+  }
 });
 
 var styles = StyleSheet.create({
@@ -975,7 +975,7 @@ var styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('AwesomeProject', function()  {return AwesomeProject;});});
+AppRegistry.registerComponent('AwesomeProject33', function()  {return AwesomeProject33;});});
 __d('react-native/Libraries/react-native/react-native',["React","ActivityIndicatorIOS","DatePickerIOS","Image","ListView","MapView","NavigatorIOS","PickerIOS","Navigator","ScrollView","SliderIOS","SwitchIOS","TabBarIOS","Text","TextInput","TouchableHighlight","TouchableOpacity","TouchableWithoutFeedback","View","WebView","AlertIOS","Animation","AppRegistry","AppStateIOS","AsyncStorage","CameraRoll","InteractionManager","LinkingIOS","LayoutAnimation","NetInfo","PixelRatio","PushNotificationIOS","PanResponder","StatusBarIOS","StyleSheet","VibrationIOS","RCTDeviceEventEmitter","NativeModules","LinkedStateMixin","ReactComponentWithPureRenderMixin","NativeModules","ReactUpdates","cloneWithProps","update","ReactDefaultPerf","ReactTestUtils"],function(global, require, requireDynamic, requireLazy, module, exports) {  /**
  * Copyright (c) 2015-present, Facebook, Inc.
  * All rights reserved.
@@ -38372,7 +38372,7 @@ for (eventType in topLevelTypes) {
 
 module.exports = ReactTestUtils;
 });
-__d('AwesomeProject/App/Views/Posts/index',["react-native/Libraries/react-native/react-native"],function(global, require, requireDynamic, requireLazy, module, exports) {  'use strict';
+__d('AwesomeProject/App/Views/Posts/index',["react-native/Libraries/react-native/react-native","AwesomeProject/App/Views/Posts/PostCellView","AwesomeProject/App/Views/PostDetail/PostDetailView"],function(global, require, requireDynamic, requireLazy, module, exports) {  'use strict';
 
 var React = require('react-native/Libraries/react-native/react-native');
 
@@ -38383,32 +38383,45 @@ var $__0=
   
   
   
-  
-  React,AppRegistry=$__0.AppRegistry,Image=$__0.Image,ListView=$__0.ListView,StyleSheet=$__0.StyleSheet,Text=$__0.Text,View=$__0.View,TouchableHighlight=$__0.TouchableHighlight;
+    React,Image=$__0.Image,ListView=$__0.ListView,StyleSheet=$__0.StyleSheet,Text=$__0.Text,View=$__0.View,TouchableHighlight=$__0.TouchableHighlight;
 
 var REQUEST_URL = 'http://zhuanlan.zhihu.com/api/columns/pinapps/posts?limit=10&offset=';
 
+
+var PostCellView = require('AwesomeProject/App/Views/Posts/PostCellView');
+var PostDetailView = require('AwesomeProject/App/Views/PostDetail/PostDetailView');
+
 var Posts = React.createClass({displayName: "Posts",
-  getInitialState: function() {
+  getInitialState: function () {
     return {
       dataSource: new ListView.DataSource({
         rowHasChanged: function(row1, row2)  {return row1 !== row2;},
       }),
       responseData: [],
       loaded: false,
-      pageOffset: 0, 
+      pageOffset: 0,
       loading: false,
     };
   },
 
-  componentDidMount: function() {
+  /**
+   * component 渲染后加载数据
+   */
+  componentDidMount: function () {
     this.fetchData(REQUEST_URL + this.state.pageOffset * 10);
   },
 
-  fetchData: function(url) {
+
+  /**
+   * 加载数据
+   * @param url
+   */
+  fetchData: function (url) {
     fetch(url)
-      .then(function(response)  {return response.json();})
-      .then(function(responseData)  {
+      .then(function(response) {
+        return response.json()
+      })
+      .then(function(responseData) {
         var data = this.state.responseData.concat(responseData);
         this.setState({
           dataSource: this.state.dataSource.cloneWithRows(data),
@@ -38421,7 +38434,11 @@ var Posts = React.createClass({displayName: "Posts",
       .done();
   },
 
-  render: function() {
+  /**
+   * 渲染方法
+   * @returns {XML}
+   */
+  render: function () {
     if (!this.state.loaded) {
       return this.renderLoadingView();
     }
@@ -38430,14 +38447,18 @@ var Posts = React.createClass({displayName: "Posts",
       React.createElement(ListView, {
         dataSource: this.state.dataSource, 
         pageSize: 10, 
-        renderRow: this.renderMovie, 
+        renderRow: this.renderList, 
         style: styles.listView, 
         renderFooter: this.renderFooter}
       )
     );
   },
 
-  renderLoadingView: function() {
+  /**
+   * 页面进来的时候加载 loading
+   * @returns {XML}
+   */
+  renderLoadingView: function () {
     return (
       React.createElement(View, {style: styles.container}, 
         React.createElement(Text, {style: styles.loadingText}, 
@@ -38447,100 +38468,85 @@ var Posts = React.createClass({displayName: "Posts",
     );
   },
 
-  endReached: function() {
+  /**
+   * 滚动到底部的时候加载更多
+   */
+  endReached: function () {
     this.fetchData(REQUEST_URL + this.state.pageOffset * 10);
   },
 
-  loadMore: function() {
+  /**
+   * 加载更多
+   */
+  loadMore: function () {
     this.setState({
-        loading: true 
+      loading: true
     });
     this.fetchData(REQUEST_URL + this.state.pageOffset * 10);
   },
 
-  renderZhihuHeader: function() {
-    return(
-      React.createElement(View, {style: styles.container}, 
-          React.createElement(Text, {style: styles.infoTitle}, 
-            "知乎专栏"
-          )
-      )
-    );
-  },
-
-  renderFooter: function() {
+  /**
+   * 底部视图
+   * @returns {XML}
+   */
+  renderFooter: function () {
     return (
-          React.createElement(TouchableHighlight, {
-            onPress: this.loadMore, 
-            underlayColor: "#FFFFFF"}, 
-            React.createElement(View, {style: styles.containerFooter}, 
-              React.createElement(Text, {style: styles.loadeMoreBtn}, 
-                "点击加载..."
-              ), 
-              this.state.loading ? 
+      React.createElement(TouchableHighlight, {
+        onPress: this.loadMore, 
+        underlayColor: "#FFFFFF"}, 
+        React.createElement(View, {style: styles.containerFooter}, 
+              this.state.loading ?
                 React.createElement(Image, {
-                source: {uri: 'http://s6.mogucdn.com/pic/140813/kuw9n_ieyggojrmi4dknlbmiytambqgiyde_26x26.gif'}, 
-                style: {width:26, height:26, flex: 1, marginLeft: -80}}
-              )
-                : React.createElement(Image, {
-                source: {uri: ''}, 
-                style: {width:26, height:26, flex: 1, marginLeft: -80}}
-              )
-            
-              
-            )
-          )
+                  source: {uri: 'http://s6.mogucdn.com/pic/140813/kuw9n_ieyggojrmi4dknlbmiytambqgiyde_26x26.gif'}, 
+                  style: {width: 26, height: 26, flex: 1, marginLeft: -80}}
+                )
+                :
+                React.createElement(Text, {style: styles.loadeMoreBtn}, 
+                  "点击加载更多..."
+                )
+                
         )
+      )
+    )
+
   },
 
-  renderMovie: function(movie) {
+  /**
+   * 开始加载列表
+   * @param post
+   * @returns {XML}
+   */
+  renderList: function (post) {
     return (
-      React.createElement(View, {style: styles.container}, 
-        React.createElement(Image, {
-          source: {uri: movie.titleImage}, 
-          style: styles.thumbnail}
-        ), 
-        React.createElement(View, {style: styles.rightContainer}, 
-          React.createElement(Text, {style: styles.title}, movie.title), 
-          React.createElement(Text, {style: styles.year}, movie.publishedTime)
-        )
+      React.createElement(PostCellView, {
+        onSelect:  function()  {return this.renderDetail(post);}.bind(this), 
+        post: post}
       )
     );
   },
+
+  /**
+   * 点击跳转到 post 详情页
+   * @param post
+   */
+  renderDetail: function(post){
+    this.props.navigator.push({
+      title: post.title,
+      component: PostDetailView,
+      passProps: {slug: post.slug}
+    })
+  }
 });
 
 var styles = StyleSheet.create({
-  infoTitle: {
-    textAlign: 'center',
-    fontSize: 18,
-    marginTop: 10,
-    marginBottom: 10,
-  },
+
   container: {
     flex: 1,
     flexDirection: 'column',
     backgroundColor: '#ffffff',
   },
-  rightContainer: {
-    flex: 1,
-    padding: 5,
-    marginBottom: 15,
-  },
-  title: {
-    fontSize: 16,
-    marginBottom: 3,
-    textAlign: 'left',
-  },
-  year: {
-    fontSize: 12,
-    color: '#999999',
-  },
-  thumbnail: {
-    flex: 1,
-    height: 200,
-  },
   listView: {
-    paddingTop: 20,
+    paddingBottom: 20,
   },
 
   loadingText: {
@@ -38554,11 +38560,11 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     paddingTop: 10,
     paddingBottom: 10,
-    justifyContent:'center',
+    justifyContent: 'center',
   },
 
   loadeMoreBtn: {
-    textAlign: 'right',
+    textAlign: 'center',
     flex: 1,
     color: '#f34943',
     fontSize: 14,
@@ -38566,6 +38572,310 @@ var styles = StyleSheet.create({
   },
 });
 
-module.exports = Posts;});
+module.exports = Posts;
+});
+__d('AwesomeProject/App/Views/Posts/PostCellView',["react-native/Libraries/react-native/react-native"],function(global, require, requireDynamic, requireLazy, module, exports) {  'use strict';
+var React = require('react-native/Libraries/react-native/react-native');
+
+var $__0=
+  
+  
+  
+  
+  
+    React,Image=$__0.Image,StyleSheet=$__0.StyleSheet,Text=$__0.Text,View=$__0.View,TouchableHighlight=$__0.TouchableHighlight;
+
+var PostCellView = React.createClass({displayName: "PostCellView",
+  getInitialState: function() {
+    return {
+      post: this.props.post
+    };
+  },
+
+  render: function() {
+    return (
+      React.createElement(TouchableHighlight, {onPress: this.props.onSelect}, 
+        React.createElement(View, {style: styles.container}, 
+          React.createElement(Image, {
+            source: {uri: this.state.post.titleImage}, 
+            style: styles.thumbnail}
+          ), 
+          React.createElement(View, {style: styles.rightContainer}, 
+            React.createElement(Text, {style: styles.title}, this.state.post.title), 
+            React.createElement(Text, {style: styles.time}, this.state.post.publishedTime)
+          )
+        )
+      )
+    );
+  }
+
+});
+
+var styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: '#ffffff',
+  },
+
+  thumbnail: {
+    flex: 1,
+    height: 200,
+  },
+
+  rightContainer: {
+    flex: 1,
+    padding: 5,
+    marginBottom: 15,
+  },
+
+  title: {
+    fontSize: 16,
+    marginBottom: 3,
+    textAlign: 'left',
+  },
+
+  time: {
+    fontSize: 12,
+    color: '#999999',
+  },
+
+})
+
+module.exports = PostCellView;});
+__d('AwesomeProject/App/Views/PostDetail/PostDetailView',["react-native/Libraries/react-native/react-native","AwesomeProject/App/Views/PostDetail/CommentList"],function(global, require, requireDynamic, requireLazy, module, exports) {  'use strict';
+var React = require('react-native/Libraries/react-native/react-native');
+
+var $__0=
+  
+  
+  
+  
+  
+  
+    React,Image=$__0.Image,StyleSheet=$__0.StyleSheet,Text=$__0.Text,View=$__0.View,TouchableHighlight=$__0.TouchableHighlight,ScrollView=$__0.ScrollView;
+
+var CommentList = require('AwesomeProject/App/Views/PostDetail/CommentList');
+
+var PostDetailView = React.createClass({displayName: "PostDetailView",
+  getInitialState: function() {
+    return {
+      loading: true
+    };
+  },
+
+  componentDidMount: function() {
+    fetch('http://zhuanlan.zhihu.com/api/columns/pinapps/posts/' + this.props.slug)
+      .then(function(response)  {return response.json();})
+      .then(function(responseData)  {
+        this.setState({
+          resData: responseData,
+          loading: false
+        });
+      }.bind(this))
+      .done();
+  },
+
+  render: function() {
+    if (this.state.loading) {
+      return (
+        React.createElement(View, {style: styles.container}, 
+          React.createElement(Text, {style: {marginTop: 100}}, 
+            "加载知乎中..."
+          )
+        )
+      );
+    }
+
+    var data = this.state.resData;
+    return (
+      React.createElement(ScrollView, {style: styles.container}, 
+        React.createElement(Image, {
+          source: {uri: data.titleImage}, 
+          style: styles.titleImage}
+        ), 
+
+        React.createElement(View, {style: styles.contentWrap}, 
+          React.createElement(Text, {style: styles.title}, data.title), 
+
+          React.createElement(View, {style: styles.authorInfo}, 
+            React.createElement(Image, {
+              source: {uri: data.author.avatar.template.replace('\{id\}', data.author.avatar.id).replace('{size}', 'xs')}, 
+              style: styles.avatar}
+            ), 
+            React.createElement(Text, {style: styles.author}, " ", data.author.name, " · ", data.publishedTime, " ")
+          ), 
+
+          React.createElement(Text, {style: styles.content}, data.content)
+        ), 
+
+        React.createElement(CommentList, {postid: this.props.slug})
+      )
+
+    );
+  }
+
+});
+
+var styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+  },
+  titleImage: {
+    height: 178,
+  },
+  contentWrap: {
+    flexDirection: 'column',
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  title: {
+    textAlign: 'left',
+    fontSize: 18,
+    marginTop: 5,
+    marginBottom: 10,
+  },
+
+  authorInfo: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  avatar: {
+    borderRadius: 12.5,
+    width: 25,
+    height: 25,
+  },
+  author: {
+    lineHeight: 20,
+    marginLeft: 5,
+  },
+
+  content: {
+    fontSize: 16,
+    marginTop: 15,
+  }
+
+});
+
+module.exports = PostDetailView;});
+__d('AwesomeProject/App/Views/PostDetail/CommentList',["react-native/Libraries/react-native/react-native"],function(global, require, requireDynamic, requireLazy, module, exports) {  'use strict';
+var React = require('react-native/Libraries/react-native/react-native');
+
+var $__0=
+  
+  
+  
+  
+  
+  
+    React,Image=$__0.Image,StyleSheet=$__0.StyleSheet,Text=$__0.Text,View=$__0.View,TouchableHighlight=$__0.TouchableHighlight,ListView=$__0.ListView;
+
+var CommentList = React.createClass({displayName: "CommentList",
+  getInitialState: function() {
+    return {
+      dataSource: new ListView.DataSource({
+        rowHasChanged: function(row1, row2)  {return row1 !== row2;},
+      }),
+      isLoading: true
+    }
+  },
+
+  componentDidMount: function () {
+    fetch('http://zhuanlan.zhihu.com/api/columns/pinapps/posts/'+ this.props.postid +'/comments?limit=20')
+      .then(function(response)  {return response.json();})
+      .then(function(responseData)  {
+        this.setState({
+          replyCount: responseData.length,
+          dataSource: this.state.dataSource.cloneWithRows(responseData),
+          isLoading: false
+        });
+      }.bind(this))
+      .done()
+  },
+
+  render: function() {
+    console.log(this.state.replyCount);
+    return (
+      React.createElement(ListView, {
+        style: styles.commentList, 
+        dataSource: this.state.dataSource, 
+        renderRow: this.renderRow, 
+        renderHeader: this.renderHeader, 
+        pageSize: 10}
+      )
+    )
+  },
+
+  renderRow: function(comment) {
+    return (
+      React.createElement(View, {style: styles.comment}, 
+        React.createElement(Image, {
+          source: {uri: comment.author.avatar.template.replace('\{id\}', comment.author.avatar.id).replace('{size}', 'l')}, 
+          style: styles.avatar}
+        ), 
+
+        React.createElement(View, {style: styles.commentUser}, 
+          React.createElement(Text, {style: styles.commentUserName}, comment.author.name), 
+          React.createElement(Text, null, comment.content), 
+          React.createElement(View, {style: {flexDirection: 'row'}}, 
+            React.createElement(Text, {style: styles.createTime}, " ", comment.createdTime, "  "), 
+            React.createElement(TouchableHighlight, {onPress: function()  {return this.addFav(comment.id);}.bind(this)}, 
+              React.createElement(Text, null, "赞")
+            )
+          )
+
+        )
+      )
+    )
+  },
+
+  renderHeader: function() {
+    return (
+      React.createElement(Text, null, this.state.replyCount, "条评论")
+    )
+  },
+
+  addFav: function (commentId) {
+    alert(commentId);
+  },
+});
+
+var styles = StyleSheet.create({
+  commentList: {
+    marginTop: 0,
+    paddingTop: 0,
+    padding: 10,
+  },
+
+  comment: {
+    flex: 1,
+    flexDirection: 'row',
+    paddingBottom: 15,
+    paddingTop: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: '#eeeeee',
+  },
+
+  avatar: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+  },
+
+  commentUser: {
+    flexDirection: 'column',
+    paddingLeft: 5,
+  },
+  createTime: {
+    color: '#9d9e9f',
+  },
+  commentUserName: {
+    color: '#225d99',
+  }
+
+});
+
+module.exports = CommentList;});
 ;require("AwesomeProject/index.ios");
 //@ sourceMappingURL=/index.ios.map
